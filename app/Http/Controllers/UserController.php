@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
         $customers = $data->where('is_admin', false)->count();
 
         $userData = ['customers' => $customers, 'admin' => $admin, 'inactive' => $inactiveUsers];
-        $users = User::latest()->paginate(20);
+        $users = User::with('roles')->latest()->paginate(20);
 
         return view('user.index', compact(['users', 'userData']));
     }
@@ -31,8 +32,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('user.create');
+    {   
+        $roles = Role::query()->latest()->get();
+        // dd($roles);
+        return view('user.create',compact('roles'));
     }
 
     /**
@@ -42,19 +45,24 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        // dd($request->all());
         $request->validate([
             'name' => 'required|max:80',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'roles'=>'required'
         ]);
 
-        User::create([
+       $user =  User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'status' => $request->status,
         ]);
+
+        $user->assignRole($request->roles);
 
         session()->flash('success', 'User created successfully');
         return back();
@@ -78,8 +86,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
-        return view('user.edit', compact('user'));
+    {   
+        $roles = Role::query()->latest()->get();
+        return view('user.edit', compact('user','roles'));
     }
 
     /**

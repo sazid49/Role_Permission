@@ -78,8 +78,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
-        return view('role.edit',compact('role'));
+        $role = Role::query()->with('permissions')->find($id);
+        $permissions = Permission::all();
+        $roleId = $role->permissions()->pluck('id')->toArray();
+        // dd($roleId);
+        return view('role.edit',compact('role','permissions','roleId'));
     }
 
     /**
@@ -89,20 +92,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $id)
+    public function update(Request $request,Role $role)
     {
-        // abort_if(!userCan('role.update'), 403);
-
-        try {
-            UpdateRole::update($request, $role);
-
-            Toastr::success('success', 'Role Updated!');
-            return back();
-        } catch (\Throwable $th) {
-
-            Toastr::error('Error', 'Something is wrong');
-            return back();
-        }
+       $request->validate([
+           'name'=>"required|unique:roles,name,$role->id",
+         ]);
+        
+         $name = $request->name;
+        $role->update(['name'=>$name]);
+        $role->syncPermissions($request->permissions);
+        session()->flash('success','Role Update success');
+        return back();
     }
 
     /**
@@ -118,7 +118,6 @@ class RoleController extends Controller
             if (!is_null($role)) {
                 $role->delete();
             }
-
             session()->flash('success', 'Role Deleted!');
             return back();
         } catch (\Throwable $th) {

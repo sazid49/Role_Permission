@@ -53,6 +53,16 @@
                                 @enderror
                             </div>
                             <div class="mb-6">
+                                <label for="userRole" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                    Select role
+                                </label>
+                                <select id="userRole" name="roles[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>  
+                            </div>  
+                            <div class="mb-6">
                                 <label for="confirmPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Status </label>
                                 <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -69,16 +79,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            {{-- <div class="mb-6">
-                                <label for="userRole" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
-                                    Select role
-                                </label>
-                                <select id="userRole" name="roles[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
+                            
                         </div>
                     </div>
                     <div class="text-center w-full">
