@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Rmunate\AgentDetection\Agent;
 
 class UserController extends Controller
 {
@@ -34,7 +35,6 @@ class UserController extends Controller
     public function create()
     {   
         $roles = Role::query()->latest()->get();
-        // dd($roles);
         return view('user.create',compact('roles'));
     }
 
@@ -52,6 +52,7 @@ class UserController extends Controller
             'name' => 'required|max:80',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
+            // 'password_confirmation' => 'required_with:password|same:password|min:6',
             'roles'=>'required'
         ]);
 
@@ -88,6 +89,8 @@ class UserController extends Controller
     public function edit(User $user)
     {   
         $roles = Role::query()->latest()->get();
+        // $data = $user->roles()->pluck('id')->toArray();
+        // dd($data);
         return view('user.edit', compact('user','roles'));
     }
 
@@ -103,7 +106,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:80',
             'email' => "required|email|unique:users,email,$user->id",
-            'password' => 'nullable|sometimes|min:6|confirmed'
+            'password' => 'nullable|sometimes|min:6|confirmed',
+            'roles'=>'required'
         ]);
 
         $user->update([
@@ -112,12 +116,15 @@ class UserController extends Controller
             'status' => $request->status,
         ]);
 
+        $user->assignRole($request->roles);
+
         if($request->has('password')){
             $user->update(['password' => bcrypt('password')]);
         }
+        return back()->with('success','User updated successfully');
 
-        session()->flash('success', 'User updated successfully');
-        return back();
+        // session()->flash('success', 'User updated successfully');
+        // return back();
     }
 
     /**

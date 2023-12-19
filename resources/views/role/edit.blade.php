@@ -83,71 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="lg:w-80 px-6 py-4 rounded-md shadow-sm dark:bg-gray-800 bg-white">
-                            <div class="border-b pb-2">
-                                <input id="management" type="checkbox"
-                                    onclick="CheckPermissionByGroup('role-management-checkbox',this)" value="2"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="management"
-                                    class="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300 select-none">
-                                    Select All
-                                </label>
-                            </div>
-                            <div
-                                class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">
-                                <div class="ml-3 role-management-checkbox">
-                                    <input onclick="checksinglepermission('role-management-checkbox','management')"
-                                        name="permissions[]" id="permission_checkbox" value="" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="permission_checkbox"
-                                        class="ml-2 text-lg text-gray-900 dark:text-gray-300">
-                                        Lorem Ipsum Dollar set <br>
-                                    </label>
-                                </div>
-                                <div class="ml-3 role-management-checkbox">
-                                    <input onclick="checksinglepermission('role-management-checkbox','management')"
-                                        name="permissions[]" id="permission_checkbox2" value="" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="permission_checkbox2"
-                                        class="ml-2 text-lg text-gray-900 dark:text-gray-300">
-                                        Lorem Ipsum Dollar set <br>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lg:w-80 px-6 py-4 rounded-md shadow-sm dark:bg-gray-800 bg-white">
-                            <div class="border-b pb-2">
-                                <input id="management" type="checkbox"
-                                    onclick="CheckPermissionByGroup('role-management-checkbox',this)" value="2"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="management"
-                                    class="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300 select-none">
-                                    Select All
-                                </label>
-                            </div>
-                            <div
-                                class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">
-                                <div class="ml-3 role-management-checkbox">
-                                    <input onclick="checksinglepermission('role-management-checkbox','management')"
-                                        name="permissions[]" id="permission_checkbox" value="" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="permission_checkbox"
-                                        class="ml-2 text-lg text-gray-900 dark:text-gray-300">
-                                        Lorem Ipsum Dollar set <br>
-                                    </label>
-                                </div>
-                                <div class="ml-3 role-management-checkbox">
-                                    <input onclick="checksinglepermission('role-management-checkbox','management')"
-                                        name="permissions[]" id="permission_checkbox2" value=""
-                                        type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="permission_checkbox2"
-                                        class="ml-2 text-lg text-gray-900 dark:text-gray-300">
-                                        Lorem Ipsum Dollar set <br>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <button type="submit"
                         class="mb-4 text-white bg-blue-500 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-4">
