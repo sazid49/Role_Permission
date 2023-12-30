@@ -23,10 +23,12 @@ class RolePermisssionSeeder extends Seeder
             ['name'=>'user list'],
             ['name'=>'create user'],
             ['name'=>'edit user'],
+            ['name'=>'update user'],
             ['name'=>'delete user'], 
             ['name'=>'role list'],
             ['name'=>'create role'],
             ['name'=>'edit role'],
+            ['name'=>'update role'],
             ['name'=>'delete role'],
             
         ];

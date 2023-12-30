@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Rmunate\AgentDetection\Agent;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,6 +15,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        $this->middleware(['permission:user list'])->only('index');   
+        $this->middleware(['permission:create user'])->only('create');   
+        $this->middleware(['permission:edit user'])->only('edit');   
+        $this->middleware(['permission:update user'])->only('update');   
+        $this->middleware(['permission:delete user'])->only('destroy');   
+     }
+
     public function index()
     {
         $data = User::latest()->get();
@@ -120,8 +131,16 @@ class UserController extends Controller
 
         if($request->has('password')){
             $user->update(['password' => bcrypt('password')]);
+            if(auth()->user()->id == $user->id)
+            {
+                 Auth::login();
+            }else{
+                return back()->with('success','User updated successfully');
+            }
+            
         }
         return back()->with('success','User updated successfully');
+
 
         // session()->flash('success', 'User updated successfully');
         // return back();

@@ -8,7 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex gap-6 flex-wrap lg:flex-nowrap w-full mb-6">
-                <a href="{{ route('users.index', ['type' => 'customer']) }}" class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
+                <a href="{{ route('users.index', ['type' => 'customer']) }}"
+                    class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
                     <span class="p-3 text-blue-600 bg-blue-100 dark:bg-blue-500/20 rounded-full">
                         <x-svg.users />
                     </span>
@@ -17,7 +18,8 @@
                         <p class="text-sm text-gray-400">Total Customer</p>
                     </div>
                 </a>
-                <a href="{{ route('users.index', ['type' => 'staff']) }}" :active="request()->routeIs('users.*')" class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
+                <a href="{{ route('users.index', ['type' => 'staff']) }}" :active="request() - > routeIs('users.*')"
+                    class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
                     <span class="p-3 text-blue-600 bg-blue-100 dark:bg-blue-500/20 rounded-full">
                         <x-svg.user />
                     </span>
@@ -26,7 +28,8 @@
                         <p class="text-sm text-gray-400">Total Staff</p>
                     </div>
                 </a>
-                <a href="{{ route('roles.index') }}" :active="request()->routeIs('roles.*')" class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
+                <a href="{{ route('roles.index') }}" :active="request() - > routeIs('roles.*')"
+                    class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
                     <span class="p-3 text-blue-600 bg-blue-100 dark:bg-blue-500/20 rounded-full">
                         <x-svg.unlock />
                     </span>
@@ -35,7 +38,9 @@
                         <p class="text-sm text-gray-400">User Roles</p>
                     </div>
                 </a>
-                <a href="{{ route('users.index', ['status' => 'inactive']) }}" :active="request()->routeIs('users.*')" class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
+                <a href="{{ route('users.index', ['status' => 'inactive']) }}"
+                    :active="request() - > routeIs('users.*')"
+                    class="hover:bg-gray-50 shadow-sm flex items-center w-64 flex-grow gap-4 p-6 bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-800 rounded-lg">
                     <span class="p-3 text-blue-600 bg-blue-100 dark:bg-blue-500/20 rounded-full">
                         <x-svg.deactivate-user />
                     </span>
@@ -45,7 +50,8 @@
                     </div>
                 </a>
             </div>
-            <div class="flex rounded-lg mb-4 justify-between items-center py-2 px-6 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            <div
+                class="flex rounded-lg mb-4 justify-between items-center py-2 px-6 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                 <h2 class="">All User
                     <span class="bg-blue-500 text-white rounded px-1 text-xs py-0.5">{{ $users->total() }}</span>
                 </h2>
@@ -79,18 +85,21 @@
                 <tbody>
                     @if ($users->count() > 0)
                         @foreach ($users as $user)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row" class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img class="w-10 h-10 rounded-full" src="{{ $user->image_url }}"
-                                        alt="Jese image">
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row"
+                                    class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full" src="{{ $user->image_url }}" alt="Jese image">
                                     <div class="pl-3">
                                         <div class="text-base font-semibold">{{ $user->name }}</div>
                                         <div class="font-normal text-gray-500">{{ $user->email }}</div>
                                     </div>
                                 </th>
                                 <td class="py-4 px-6">
-                                    @foreach($user->roles as $role)
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800"> {{ $role->name }}</span>
+                                    @foreach ($user->roles as $role)
+                                        <span
+                                            class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                                            {{ $role->name }}</span>
                                     @endforeach
                                 </td>
                                 <td class="py-4 px-6">
@@ -98,10 +107,10 @@
                                 </td>
                                 <td class="py-4 px-6">
                                     <div class="flex items-center">
-                                        @if($user->status)
-                                        <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Active
+                                        @if ($user->status)
+                                            <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div> Active
                                         @else
-                                        <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div> Inactive
+                                            <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div> Inactive
                                         @endif
                                     </div>
                                 </td>
@@ -110,6 +119,7 @@
                                         data-bs-placement="top" href="{{ route('users.edit', $user->id) }}">
                                         <x-svg.edit class="w-6 h-6 text-green-400" />
                                     </a>
+
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                         class="d-inline">
                                         @method('DELETE')

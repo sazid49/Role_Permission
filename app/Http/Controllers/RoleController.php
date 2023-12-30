@@ -19,6 +19,16 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        $this->middleware(['permission:role list'])->only('index');   
+        $this->middleware(['permission:create role'])->only('create');   
+        $this->middleware(['permission:edit role'])->only('edit');   
+        $this->middleware(['permission:update role'])->only('update');   
+        $this->middleware(['permission:delete role'])->only('destroy');   
+     }
+
     public function index()
     {   
         $roles = Role::query()->with('permissions')->latest()->get();
